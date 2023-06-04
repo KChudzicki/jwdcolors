@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.thymeleaf.util.StringUtils;
 import pl.edu.wszib.jwd.jwdcolors.dao.SelectedColorDao;
 import pl.edu.wszib.jwd.jwdcolors.model.SelectedColor;
+import pl.edu.wszib.jwd.jwdcolors.servie.SelectedColorService;
 
 import java.util.Date;
 
@@ -17,14 +18,14 @@ public class SelectedColorController {
     @Value("${app.title.select}")
     private String title;
 @Autowired
-    SelectedColorDao selectedColorDao;
+SelectedColorService selectedColorService;
 
 
     @GetMapping({"/select","/select/{color}"})
     public String selectedColorPage(@PathVariable(required = false) String color,  Model model){
 
         if (!StringUtils.isEmpty(color)){
-            selectedColorDao.save(new SelectedColor(color, new Date()));
+            selectedColorService.save(color);
         }
 
         String[][] colors = {
