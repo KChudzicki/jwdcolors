@@ -40,5 +40,9 @@ SelectedColorService selectedColorService;
         return "select";
 
     }
+    @GetMapping("/")
+    public String showIndex(){
+        return  "redirect:select";
+    }
 
 }
